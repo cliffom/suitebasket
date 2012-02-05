@@ -10,7 +10,7 @@
  * http://sorgalla.com/jcarousel/
  */
 (function($) {
-	var version = '0.2';
+	var version = '0.2.1';
 	var settings;
 	var counter;
 	var items;
@@ -98,6 +98,7 @@
 		resize : function(type, width) {
 			this.suiteBasket(type, width);
 			counter.html(this.suiteBasket('count') + ' items');
+			items.jcarousel('reload');
 			return this;
 		},
 
@@ -108,7 +109,6 @@
 			} else {
 				items.jcarousel('scroll', -1);
 			}
-			items.jcarousel('reload');
 			return this;
 		},
 
@@ -116,7 +116,6 @@
 			if (basketContainerWidth < (this.width() * settings['widthConstraint'])) {
 				items.width(items.width() - width);
 			}
-			items.jcarousel('reload');
 			basketContainerWidth -= width;
 			return this;
 		},
