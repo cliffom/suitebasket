@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Test Layout</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="src/jquery.jcarousel.js"></script>
+	<script type="text/javascript" src="src/jquery.suitebasket.js"></script>
+
+	<style>
+	body {
+		font-family: sans-serif;
+		font-size: 12pt;
+	}
+	#content {
+		width: 500px;
+		height: 300px;
+		border: 1px solid #aaa;
+	}
+	#basket {
+		margin-top: 25px;
+		width: 500px;
+		border: 1px solid #aaa;
+		background-color: #ccc;
+		overflow: hidden;
+	}
+	.suitebasket-items {
+	    position: relative;
+	    overflow: hidden;
+		width: 0px;
+		height: 80px;
+		margin: 0 auto;
+	}
+	.suitebasket-items ul {
+	    width: 20000em;
+	    position: absolute;
+	    list-style: none;
+	    margin: 35px 0 0 0;
+	    padding: 0;
+	}
+	.suitebasket-items li {
+		float: left;
+	}
+	.suitebasket-items[dir=rtl] li {
+	    float: right;
+	}	
+	#content-items .item {
+		float: left;
+		margin: 5px;
+	}
+	.item {
+		width: 25px;
+		height: 25px;
+		border: 1px solid #222;
+		background-color: #ddd;
+		cursor: pointer;
+	}
+	</style>
+</head>
+
+<body>
+	<h1>jquery.suitebasket</h1>
+	<div id="content">
+		<div id="content-items">
+			<br style="clear:both" />
+		</div>
+	</div>
+	<div id="basket"></div>
+
+	<script type="text/javascript">
+	$(function() {
+		var basket = $("#basket").suiteBasket({'widthConstraint': .90});
+		var hue;
+		var element;		
+		
+		for (var i=0; i<104; i++) {
+			hue = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+			element = $('<div class="item"></div>').css('background-color', hue);
+			$("#content-items").prepend(element);
+		}
+
+		$("#content div.item").draggable({
+			containment: "window",
+			revert: true,
+			zIndex: 10,
+			start: function () {
+				basket.suiteBasket('focus');
+			},
+			stop: function () {
+				basket.suiteBasket('fade');
+			},
+			helper: function() {
+				return $('<div></div>').append($(this).clone());
+			}
+		});
+	});
+	</script>
+</body>
+</html>
