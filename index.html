@@ -45,7 +45,7 @@
 	}
 	.suitebasket-items[dir=rtl] li {
 	    float: right;
-	}	
+	}
 	#content-items .item {
 		float: left;
 		margin: 5px;
@@ -61,7 +61,15 @@
 </head>
 
 <body>
-	<h1>suitebasket Example Usage</h1>
+	<h1>suitebasket</h1>
+	<p>
+		<strong>Author:</strong> Michael Clifford<br/>
+		<strong>Version:</strong> <span id="version"></span><br/>
+		<strong>Source:</strong> <a href="https://github.com/cliffom/suitebasket">https://github.com/cliffom/suitebasket</a><br/>
+		<strong>Download:</strong> <a href="https://github.com/cliffom/suitebasket/downloads">https://github.com/cliffom/suitebasket/downloads</a><br/>
+		<span><strong>License:</strong> Dual licensed under the MIT and GPL licenses.<br/>
+	</p>
+	<strong>Example:</strong>
 	<div id="content">
 		<div id="content-items">
 			<br style="clear:both" />
@@ -73,8 +81,8 @@
 	$(function() {
 		var basket = $("#basket").suiteBasket({'widthConstraint': .90});
 		var hue;
-		var element;		
-		
+		var element;
+		$("#version").append(basket.suiteBasket('version'));
 		for (var i=0; i<104; i++) {
 			hue = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
 			element = $('<div class="item"></div>').css('background-color', hue);

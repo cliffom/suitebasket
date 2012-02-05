@@ -10,6 +10,7 @@
  * http://sorgalla.com/jcarousel/
  */
 (function($) {
+	var version = '0.2';
 	var settings;
 	var counter;
 	var items;
@@ -65,6 +66,10 @@
 			});
 
 			return this;
+		},
+
+		version : function() {
+			return version;
 		},
 
 		count : function() {
